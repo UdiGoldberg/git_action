@@ -59,7 +59,5 @@ if __name__ == '__main__':
     path = Path(os.environ.get("INPUT_PATH"))
     checker = NpmAuditChecker(path)
     success = checker.run()
-    if success:
-        exit(0)
-    else:
-        exit(-1)
+    if not success:
+        raise Exception('NPM audit varification failed')
