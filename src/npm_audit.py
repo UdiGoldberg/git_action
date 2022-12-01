@@ -30,18 +30,17 @@ class NpmAuditChecker:
             # print(self.audit_json)
 
     def search_for_issues(self):
-        for vuln_name, vuln_data in self.audit_json['vulnerabilities'].items():
-            if vuln_data['severity'] in NpmAuditChecker.RISK_SEVERITIES:
+        for vuln_name, vuln_data in self.audit_json.get('vulnerabilities').items():
+            if vuln_data.get('severity') in NpmAuditChecker.RISK_SEVERITIES:
                 self.success = False
                 return
-        # for advisor_id, advisor_data in self.audit_json['advisories'].items():
-        #     if advisor_data['severity'] in NpmAuditChecker.RISK_SEVERITIES:
-        #         self.success = False
-        #         return
-        #     for keyword in NpmAuditChecker.RISK_KEYWORDS:
-        #         if keyword in advisor_data['title']:
-        #             self.success = False
-        #             return
+            for dependency in vuln_data['via']:
+                if dependency.get('severity') in NpmAuditChecker.RISK_SEVERITIES:
+                    self.success = False
+                    return
+                for keyword in NpmAuditChecker.RISK_KEYWORDS:
+                    if keyword in dependency.get('title'):
+                        self.success = False
         self.success = True
 
     def remove_temp_file(self):
