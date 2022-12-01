@@ -29,8 +29,8 @@ class NpmAuditChecker:
             print(self.audit_json)
 
     def search_for_issues(self):
-        for vuln in self.audit_json['vulnerabilities']:
-            if vuln['severity'] in NpmAuditChecker.RISK_SEVERITIES:
+        for vuln_name, vuln_data in self.audit_json['vulnerabilities'].items():
+            if vuln_data['severity'] in NpmAuditChecker.RISK_SEVERITIES:
                 self.success = False
                 return
         # for advisor_id, advisor_data in self.audit_json['advisories'].items():
