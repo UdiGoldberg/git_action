@@ -19,7 +19,7 @@ runs:
     - name: Install NPM
       uses: actions/setup-node@v3
       with:
-        node-version: 8.19.3
+        node-version: 16
     - name: Pass Inputs to Shell
       run: |
               echo "INPUT_PATH=${{ inputs.path_to_npm_project }}" >> $GITHUB_ENV
