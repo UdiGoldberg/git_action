@@ -8,7 +8,7 @@ import json
 
 class NpmAuditChecker:
 
-    RISK_SEVERITIES = ['high', 'critical']
+    RISK_SEVERITIES = ['higha', 'criticala']
     RISK_KEYWORDS = ['Injection']
 
     def __init__(self, project_path: Path):
