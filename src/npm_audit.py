@@ -35,6 +35,8 @@ class NpmAuditChecker:
                 self.success = False
                 return
             for dependency in vuln_data['via']:
+                if not isinstance(dependency, dict):
+                    continue
                 if dependency.get('severity') in NpmAuditChecker.RISK_SEVERITIES:
                     self.success = False
                     return
