@@ -24,6 +24,7 @@ class NpmAuditChecker:
         if stderr:
             raise Exception(f'Failed to run npm audit on {self.project_path}')
         with open(self.tmp_file, 'r') as f:
+            print(f.read())
             self.audit_json = json.load(f)
             # print('JSON FILE:')
             # print(self.audit_json)
