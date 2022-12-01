@@ -49,6 +49,7 @@ class NpmAuditChecker:
     def run(self):
         self.save_audit_file()
         self.search_for_issues()
+        print(self.success)
         if self.success:
             self.remove_temp_file()
         return self.success
