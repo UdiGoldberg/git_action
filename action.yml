@@ -24,19 +24,3 @@ runs:
       id: get-result
       run: python src/npm_audit.py
       shell: bash
-#
-#on: [ pull_request]
-#jobs:
-#  audit:
-#    name: NPM Audit Validator
-#    runs-on: self-hosted
-#    steps:
-#        inputs:
-#          project-path:
-#            required: true
-#        runs:
-#          using: 'docker'
-#          image: 'Dockerfile'
-#          args:
-#            - ${{ inputs.project-path }}
-#        continue-on-error: false
