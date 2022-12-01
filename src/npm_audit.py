@@ -25,8 +25,8 @@ class NpmAuditChecker:
             raise Exception(f'Failed to run npm audit on {self.project_path}')
         with open(self.tmp_file, 'r') as f:
             self.audit_json = json.load(f)
-            print('JSON FILE:')
-            print(self.audit_json)
+            # print('JSON FILE:')
+            # print(self.audit_json)
 
     def search_for_issues(self):
         for vuln_name, vuln_data in self.audit_json['vulnerabilities'].items():
