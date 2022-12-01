@@ -58,4 +58,4 @@ if __name__ == '__main__':
     checker = NpmAuditChecker(path)
     success = checker.run()
     if not success:
-        raise Exception('NPM audit varification failed')
+        raise Exception('NPM audit verification failed')
