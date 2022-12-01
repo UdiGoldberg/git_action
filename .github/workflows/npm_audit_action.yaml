@@ -1,0 +1,17 @@
+name: Test NPM audit Action
+on: [pull_request]
+
+jobs:
+  validate-npm-audit:
+    runs-on: ubuntu-latest
+    name: Returns NPM audit is valid
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: get result
+        id: get_result
+        uses: ./
+        with:
+          path: /home/udi/udi/nest
+      - name: Print the result
+        run: echo "${{ steps.get_result.outputs.valid }}"

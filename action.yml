@@ -1,0 +1,42 @@
+name: NPM Audit Validator
+description: 'A GitHub Action that checks for npm audit issues'
+inputs:
+  path_to_npm_project:
+    description: 'Path to node JS project'
+    required: true
+    default: '/'
+outputs:
+  valid:
+    description: 'return True/False if the validator passed/failed'
+    value: ${{ steps.get-valid.outputs.valid }}
+runs:
+  using: 'composite'
+  steps:
+    - name: Install Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+    - name: Pass Inputs to Shell
+      run: |
+              echo "INPUT_PATH=${{ inputs.path_to_npm_project }}" >> $GITHUB_ENV
+      shell: bash
+    - name: get result
+      id: get-result
+      run: python src/npm_audit.py
+      shell: bash
+#
+#on: [ pull_request]
+#jobs:
+#  audit:
+#    name: NPM Audit Validator
+#    runs-on: self-hosted
+#    steps:
+#        inputs:
+#          project-path:
+#            required: true
+#        runs:
+#          using: 'docker'
+#          image: 'Dockerfile'
+#          args:
+#            - ${{ inputs.project-path }}
+#        continue-on-error: false
