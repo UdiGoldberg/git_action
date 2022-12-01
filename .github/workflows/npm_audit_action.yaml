@@ -12,6 +12,6 @@ jobs:
         id: get_result
         uses: ./
         with:
-          path: /home/udi/udi/nest
+          path_to_npm_project: /home/udi/udi/nest
       - name: Print the result
         run: echo "${{ steps.get_result.outputs.valid }}"
